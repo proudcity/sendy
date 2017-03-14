@@ -1,0 +1,6 @@
+Kubernetes definition for Sendy
+
+Requirements: secret with
+dbhost
+dbuser
+dbhost

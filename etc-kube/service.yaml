@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sendy
+  namespace: api
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    appid: sendy
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}
