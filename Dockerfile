@@ -1,4 +1,4 @@
-FROM php:7.0-apache
+FROM php:5.6-apache
 
 # install the PHP extensions we need
 RUN apt-get update \
@@ -24,6 +24,8 @@ RUN { \
 
 # PHP base template
 COPY . /app
+RUN rm -r /var/www/html
+RUN ln -s /app /var/www/html
 WORKDIR /app
 
 CMD ["apache2-foreground"]
