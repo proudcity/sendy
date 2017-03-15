@@ -33,6 +33,10 @@ COPY . /var/www/html/
 WORKDIR /var/www/html
 
 # @todo: make this a persistent disk?
+RUN mkdir -f /var/www/html/uploads
 RUN chmod -R 777 /var/www/html/uploads
+
+# Security
+RUN chmod -R 000 etc etc-kube
 
 CMD ["cron", "apache2-foreground"]
