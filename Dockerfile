@@ -20,8 +20,6 @@ RUN { \
   } > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
 #COPY etc/apache-vhost.conf /etc/apache2/sites-enabled/000-default.conf
-#COPY etc/php.ini /usr/local/etc/php/php.ini
-
 COPY etc/php.ini /usr/local/etc/php/php.ini
 
 # Add cronjob
@@ -30,11 +28,11 @@ COPY etc/crontab /etc/cron.d/sendy-cron
 RUN chmod 0644 /etc/cron.d/sendy-cron
 RUN touch /var/log/cron.log
 
-# @todo: make this a persistent disk?
-RUN chmod -R 777 /var/www/html/uploads
-
 # PHP base template
 COPY . /var/www/html/
 WORKDIR /var/www/html
+
+# @todo: make this a persistent disk?
+RUN chmod -R 777 /var/www/html/uploads
 
 CMD ["cron", "apache2-foreground"]
