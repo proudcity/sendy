@@ -30,6 +30,9 @@ COPY etc/crontab /etc/cron.d/sendy-cron
 RUN chmod 0644 /etc/cron.d/sendy-cron
 RUN touch /var/log/cron.log
 
+# @todo: make this a persistent disk?
+RUN chmod -R 777 /var/www/html/uploads
+
 # PHP base template
 COPY . /var/www/html/
 WORKDIR /var/www/html
