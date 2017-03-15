@@ -39,4 +39,4 @@ RUN chmod -R 777 /var/www/html/uploads
 # Security
 RUN chmod -R 000 etc etc-kube
 
-CMD ["cron", "apache2-foreground"]
+CMD ["apache2-foreground"]
