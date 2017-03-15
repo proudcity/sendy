@@ -23,9 +23,7 @@ RUN { \
 #COPY etc/php.ini /usr/local/etc/php/php.ini
 
 # PHP base template
-COPY . /app
-RUN rm -r /var/www/html
-RUN ln -s /app /var/www/html
-WORKDIR /app
+COPY . /var/www/html/
+WORKDIR /var/www/html
 
 CMD ["apache2-foreground"]
