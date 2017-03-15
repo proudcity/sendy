@@ -22,8 +22,16 @@ RUN { \
 #COPY etc/apache-vhost.conf /etc/apache2/sites-enabled/000-default.conf
 #COPY etc/php.ini /usr/local/etc/php/php.ini
 
+COPY etc/php.ini /usr/local/etc/php/php.ini
+
+# Add cronjob
+RUN apt-get update && apt-get -y install cron
+COPY etc/crontab /etc/cron.d/sendy-cron
+RUN chmod 0644 /etc/cron.d/sendy-cron
+RUN touch /var/log/cron.log
+
 # PHP base template
 COPY . /var/www/html/
 WORKDIR /var/www/html
 
-CMD ["apache2-foreground"]
+CMD ["cron", "apache2-foreground"]
